@@ -5,7 +5,7 @@ services:
     restart: always
     env_file: .env
     ports:
-      - "4080:4080"
+      - "$PORT:$PORT"
     volumes:
       - .:/app
       - "/etc/timezone:/etc/timezone:ro"
