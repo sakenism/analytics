@@ -10,5 +10,7 @@ Includes following metrics:
 - Gender Distribution
 - Source channels distribution (from friends, news, etc.)
 - Language distribution (kz, ru, en)
+- Onboarding steps funnel
+- Projects finished count
 
 ![alt text](https://github.com/alem-01/analytics/raw/master/assets/dash.png "Platform")
