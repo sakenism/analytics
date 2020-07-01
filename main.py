@@ -13,6 +13,7 @@ from app.gender import layout as gender_layout
 from app.source_channels import layout as source_channels_layout
 from app.languages import layout as languages_layout
 from app.projects import layout as projects_layout
+from app.js_piscine import layout as js_piscine_layout
 
 
 app.layout = html.Div(children=[
@@ -20,6 +21,10 @@ app.layout = html.Div(children=[
 
     html.Div([
         onboarding_steps_layout.layout
+    ], className="row"),
+
+    html.Div([
+        js_piscine_layout.layout
     ], className="row"),
 
     html.Div([
