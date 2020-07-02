@@ -8,30 +8,30 @@ from app.js_piscine.models import js_piscine_model
 
 data = js_piscine_model.steps()
 
-print(data)
+firstEnd = 45
+secondEnd = 78
 
-figchildren = go.Figure(data=go.Bar(x=data[0], y=data[1]))
-figgrandchildren = go.Figure(data=go.Bar(x=data[3], y=data[4]))
-figgrandchildrenfail = go.Figure(data=go.Bar(x=data[3], y=data[5]))
-
-# figchildren.show()
-
-
-
-
-# figure_week = px.bar(audit_model.weekly(), 
-#                      x='last_day', y='count', 
-#                      title="Audits per week", color="grade", 
-#                      color_discrete_map={"1":"blue", "0":"red"}, 
-#                      category_orders={"grade": ["1", "0"]})
-# figure_day = {}
-
-layout = html.Div(children=[
-    # dcc.Graph(id="some-id", figure=figchildren),
-    dcc.Graph(id="another-id", figure=figgrandchildren),
-    dcc.Graph(id="anothe-id", figure=figgrandchildrenfail)
+fig_first = go.Figure(data=[
+	go.Bar(name='Success', x=data[0][:firstEnd], y=data[1][:firstEnd]),
+	go.Bar(name='Fail', x=data[0][:firstEnd], y=data[2][:firstEnd])
 ])
 
+fig_second = go.Figure(data=[
+	go.Bar(name='Success', x=data[0][firstEnd:secondEnd], y=data[1][firstEnd:secondEnd]),
+	go.Bar(name='Fail', x=data[0][firstEnd:secondEnd], y=data[2][firstEnd:secondEnd])
+])
 
-# figgrandchildren = go.Figure(data=go.Bar(x=bin_grandchildren_name, y=bin_grandchildren_success))
-# figgrandchildren.show()
+fig_third = go.Figure(data=[
+	go.Bar(name='Success', x=data[0][secondEnd:], y=data[1][secondEnd:]),
+	go.Bar(name='Fail', x=data[0][secondEnd:], y=data[2][secondEnd:])
+])
+
+fig_first.update_layout(title_text='JS piscine FIRST week quests', barmode='stack')
+fig_second.update_layout(title_text='JS piscine SECOND week quests', barmode='stack')
+fig_third.update_layout(title_text='JS piscine THIRD week quests', barmode='stack')
+
+layout = html.Div(children=[
+	dcc.Graph(id="js-first-week-quests", figure=fig_first),
+	dcc.Graph(id="js-second-week-quests", figure=fig_second),
+	dcc.Graph(id="js-third-week-quests", figure=fig_third)
+])

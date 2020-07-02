@@ -51,6 +51,7 @@ class Audits:
         per_week_data = database.exec_sql(self.per_week_query)
         for i in range(len(per_week_data)):
             per_week_data[i]['last_day'] = datetime.strptime(per_week_data[i]['week']+"-7", "%G-%V-%u")
+        # print(per_week_data)
         return per_week_data
     
     def daily(self, start: str, end: str):
